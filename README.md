@@ -30,10 +30,15 @@ composer install
 php artisan key:generate
 ```
 
-## Step 5- Run migrations:
+## Step 5 - Run migrations:
 *Make sure to update `.env` with your database credentials before running the migrations.*
 ```batch
 php artisan migrate
+```
+
+## Step 6 - Start the server and go to your application:
+```batch
+php artisan serve
 ```
 
 ---
