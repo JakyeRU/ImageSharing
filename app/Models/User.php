@@ -49,4 +49,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the images of the user.
+     */
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

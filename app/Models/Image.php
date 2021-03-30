@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The primary key associated with the table.
@@ -23,10 +24,9 @@ class Image extends Model
      */
     protected $fillable = [
         'id',
-        'author',
+        'user_id',
         'path',
-        'public',
-        'deleted'
+        'public'
     ];
 
     /**

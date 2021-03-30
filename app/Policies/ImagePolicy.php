@@ -30,11 +30,7 @@ class ImagePolicy
      */
     public function view(User $user, Image $image)
     {
-        return (
-            $image -> deleted ? abort(404) : (
-                $image -> public ? true : $image -> author == $user -> id
-            )
-        );
+        return $image -> public ?: $user -> images -> contains($image);
     }
 
     /**
@@ -45,7 +41,7 @@ class ImagePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user -> hasVerifiedEmail();
     }
 
     /**
@@ -57,7 +53,7 @@ class ImagePolicy
      */
     public function update(User $user, Image $image)
     {
-        return $user -> id == $image -> author;
+        return $user -> images -> contains($image);
     }
 
     /**
@@ -69,7 +65,7 @@ class ImagePolicy
      */
     public function delete(User $user, Image $image)
     {
-        return $user -> id == $image -> author;
+        return $user -> images -> contains($image);
     }
 
     /**
@@ -81,7 +77,7 @@ class ImagePolicy
      */
     public function restore(User $user, Image $image)
     {
-        //
+        return false;
     }
 
     /**
@@ -93,6 +89,6 @@ class ImagePolicy
      */
     public function forceDelete(User $user, Image $image)
     {
-        return $user -> id == $image -> author;
+        return false;
     }
 }
